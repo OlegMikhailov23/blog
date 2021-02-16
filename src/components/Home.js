@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import BlogList from "./BlogList";
 
 class Home extends Component {
     constructor(props) {
@@ -12,19 +13,10 @@ class Home extends Component {
         }
     }
 
-    handleClick(i) {
-        this.setState({})
-    }
-
     render() {
         return (
             <div className="home">
-                {this.state.blogs.map(blog => (
-                    <div className="blog-preview" key={blog.id}>
-                        <h2>{blog.title}</h2>
-                        <p>Write by {blog.author}</p>
-                    </div>
-                ))}
+                <BlogList blogs={this.state.blogs} title={"All Blogs"} />
             </div>
         );
     }
