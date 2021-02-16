@@ -13,13 +13,18 @@ class Home extends Component {
         }
     }
 
+
+    handleDelete(id) {
+        const newBlogs = this.state.blogs.filter(blog => blog.id !== id);
+        this.setState(currentState => {
+            return { blogs: newBlogs };
+        });
+    }
+
     render() {
         return (
             <div className="home">
-                <BlogList blogs={this.state.blogs} title={"All Blogs"}/>
-                <BlogList blogs={this.state.blogs.filter(blog =>
-                    blog.author === 'oleg'
-                )} title={"Oleg's blog's"}/>
+                <BlogList blogs={this.state.blogs} title={"All Blogs"} handleDelete={this.handleDelete.bind(this)}/>
             </div>
         );
     }
