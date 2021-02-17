@@ -6,7 +6,6 @@ class BlogList extends Component {
         this.state = {
             blogs: props,
             title: props,
-            handleDelete: props
         }
     }
 
@@ -18,7 +17,6 @@ class BlogList extends Component {
                     <div className="blog-preview" key={blog.id}>
                         <h2>{blog.title}</h2>
                         <p>Write by {blog.author}</p>
-                        <button onClick={() => this.props.handleDelete(blog.id)}>Delete Blog</button>
                     </div>
                 ))}
             </div>
