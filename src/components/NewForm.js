@@ -1,6 +1,6 @@
 const NewForm = () => {
     return (
-        <div class="create">
+        <div className="create">
             <h2>Add new Blog</h2>
         </div>
     );

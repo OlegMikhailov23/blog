@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from "react-router-dom";
 
 class BlogList extends Component {
     constructor(props) {
@@ -15,8 +16,10 @@ class BlogList extends Component {
                 <h2>{this.props.title}</h2>
                 {this.props.blogs.map(blog => (
                     <div className="blog-preview" key={blog.id}>
-                        <h2>{blog.title}</h2>
-                        <p>Write by {blog.author}</p>
+                        <Link to={`/blogs/${blog.id}`}>
+                            <h2>{blog.title}</h2>
+                            <p>Write by {blog.author}</p>
+                        </Link>
                     </div>
                 ))}
             </div>
