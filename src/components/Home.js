@@ -8,21 +8,33 @@ class Home extends Component {
         this.state = {
             blogs: null,
             isPending: true,
+            error: null,
         }
     }
 
     componentDidMount() {
-            fetch('http://localhost:8000/blogs')
-                .then(res => {
-                    return res.json()
+        fetch('http://localhost:8000/blogs')
+            .then(res => {
+                if (!res.ok) {
+                    throw Error('Could not fetch the data')
+                }
+                return res.json()
+            })
+            .then(data => {
+                this.setState({
+                    blogs: data,
+                    isPending: false,
+                    error: null,
                 })
-                .then(data => {
-                    this.setState({
-                        blogs: data,
-                        isPending: false,
-                    })
-                })
+            })
+            .catch((err) => {
+                this.setState(({
+                    isPending: false,
+                    error: err.message,
+                }))
+            })
     }
+
     // componentDidUpdate(prevProps, prevState) {
     //
     // }
@@ -30,8 +42,9 @@ class Home extends Component {
     render() {
         return (
             <div className="home">
+                {this.state.error && <div>{this.state.error}</div>}
                 {this.state.isPending && <div>Loading...</div>}
-                {this.state.blogs && <BlogList blogs={this.state.blogs} title={"All Blogs"} />}
+                {this.state.blogs && <BlogList blogs={this.state.blogs} title={"All Blogs"}/>}
             </div>
         );
     }
