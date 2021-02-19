@@ -4,6 +4,7 @@ import React from "react";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import NewForm from "./components/NewForm";
 import BlogDetails from "./components/BlogDetails";
+import NotFound from "./components/NotFound";
 
 function App() {
 
@@ -21,6 +22,9 @@ function App() {
                         </Route>
                         <Route path="/blogs/:id">
                             <BlogDetails />
+                        </Route>
+                        <Route path='*'>
+                            <NotFound />
                         </Route>
                     </Switch>
                 </div>
