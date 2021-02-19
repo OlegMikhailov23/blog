@@ -1,10 +1,12 @@
 import {useState} from "react";
+import {useHistory} from "react-router-dom";
 
 const NewForm = () => {
     const [title, setTitle] = useState('Hello');
     const [body, setBody] = useState('Hello');
     const [author, setAuthor] = useState('Oleg');
     const [isPending, setIsPending] = useState(false);
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,8 +19,9 @@ const NewForm = () => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(blog)
         }).then(() => {
-            console.log('New blog added')
             setIsPending(false);
+            // history.go(-1);
+            history.push('/');
         })
     }
     return (
